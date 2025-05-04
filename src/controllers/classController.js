@@ -47,7 +47,7 @@ const deleteClass = async (req, res) => {
   try {
     const deleted = await eventService.deleteEvent(req.params.id);
     if (!deleted) return res.status(404).json({ message: 'Event not found' });
-    res.json({ message: 'Event deleted successfully' });
+    res.json({ message: 'class deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

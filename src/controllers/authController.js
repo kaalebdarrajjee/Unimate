@@ -47,15 +47,18 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
     if(adminCode == process.env.ADMIN_CODE){
       user.isPremium = true
-      await user.save()
 
+    }else{
+      user.isPremium = false
     }
+    await user.save()
     if (user && (await bcrypt.compare(password, user.password))) {
       res.json({
         _id: user._id,
         name: user.name,
         email: user.email,
         token: generateToken(user._id),
+        isPremium:user.isPremium
       });
     } else {
       res.status(400).json({ message: "Invalid credentials" });

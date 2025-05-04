@@ -3,10 +3,11 @@ const Notice = require('../models/noticeModel');
 const createNotice = async (req) => {
   const user = req.user
   const {title, content} = req.body
-  await Notice.create({
+  const notice = await Notice.create({
     title,content,
     postedBy:user._id
   })
+  return notice;
 };
 
 const getAllNotices = async () => {

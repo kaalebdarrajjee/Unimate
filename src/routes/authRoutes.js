@@ -2,6 +2,7 @@ const express = require("express");
 const { body } = require("express-validator");
 const passport = require("passport");
 const upload = require('../middleware/multer'); // Multer middleware for file upload
+const {isAuthenticated} = require("../middleware/auth");
 // Route to upload profile photo
 
 
@@ -53,6 +54,6 @@ router.post(
   router.post("/request-reset", requestReset);
   router.post("/reset-password", resetPassword);
   
-  router.post('/:id/photo', upload.single('image'), uploadProfilePhoto);
+  router.post('/:id/photo',isAuthenticated, upload.single('image'), uploadProfilePhoto);
 
 module.exports = router;

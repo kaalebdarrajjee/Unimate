@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const classController = require('../controllers/classController');
-const isAuthenticated = require("../middleware/auth");
+const {isAuthenticated} = require("../middleware/auth");
 const upload = require('../middleware/multer'); // Import Multer middleware
 
 

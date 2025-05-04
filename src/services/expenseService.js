@@ -3,10 +3,11 @@ const Expense = require('../models/expenseModel');
 const createExpense = async (req) => {
   const User = req.user
   const {amount, date, category} = req.body
-    await Expense.create({
+    const expense = await Expense.create({
       amount, date,category,
       user:User._id
     })
+    return expense;
 };
 
 const getAllExpenses = async () => {

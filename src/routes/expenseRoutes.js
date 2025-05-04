@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const expenseController = require('../controllers/expenseController');
-const isAuthenticated = require("../middleware/auth");
+const {isAuthenticated} = require("../middleware/auth");
 
 router.post('/', isAuthenticated, expenseController.createExpense);
 router.get('/', isAuthenticated, expenseController.getAllExpenses);

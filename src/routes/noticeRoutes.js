@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const noticeController = require('../controllers/noticeController');
-const isAuthenticated = require("../middleware/auth");
+const {isAuthenticated} = require("../middleware/auth");
 
 router.post('/', isAuthenticated, noticeController.createNotice);
 router.get('/', isAuthenticated, noticeController.getAllNotices);

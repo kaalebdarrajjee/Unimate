@@ -5,13 +5,9 @@ const createEvent = async (req) => {
   const user = req.user;
   const { title, date, description } = req.body;
 
-  // Ensure a file is uploaded
-  if (!req.file) {
-    throw new Error('Photo is required');
-  }
-
+ 
   // Upload photo to Cloudinary
-  const uploadResult = await cloudinary.uploader.upload(req.file.path);
+  const uploadResult = await cloudinary.uploader.upload(req.file?.path);
   const photo = uploadResult.secure_url;
 
   // Create and return the event

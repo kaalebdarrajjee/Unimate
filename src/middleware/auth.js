@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel")
-module.exports =async function isAuthenticated  (req, res, next) {
+const isAuthenticated =async function   (req, res, next) {
   const authHeader = req.headers.authorization || "";
   const token = authHeader.replace("Bearer ", "");
   if (!token) return res.status(401).json({ message: "No token provided" });
@@ -14,7 +14,7 @@ module.exports =async function isAuthenticated  (req, res, next) {
   }
 };
 
-module.exports = async function isPremium(req,res,next){
+const isPremium = async function (req,res,next){
   const authHeader = req.headers.authorization || "";
   const token = authHeader.replace("Bearer ", "");
   if (!token) return res.status(401).json({ message: "No token provided" });
@@ -28,3 +28,8 @@ module.exports = async function isPremium(req,res,next){
     res.status(401).json({ message: "Invalid or expired token" });
   }
 }
+
+module.exports = {
+  isPremium,
+  isAuthenticated
+};
