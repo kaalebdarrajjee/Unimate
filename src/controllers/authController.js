@@ -40,9 +40,16 @@ const loginUser = async (req, res) => {
    const errors = validationResult(req);
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
-  const { email, password } = req.body;
+  const { email, password,adminCode } = req.body;
   try {
+    let isPremium
+   
     const user = await User.findOne({ email });
+    if(adminCode == process.env.ADMIN_CODE){
+      user.isPremium = true
+      await user.save()
+
+    }
     if (user && (await bcrypt.compare(password, user.password))) {
       res.json({
         _id: user._id,
